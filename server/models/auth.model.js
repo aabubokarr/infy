@@ -128,11 +128,11 @@ const generateOTP = async (req, res) => {
 
     // Send OTP via email
     await transporter.sendMail({
-      from: `"Infinite Cloud Bot" <${process.env.EMAIL_USER}>`,
+      from: `"Infy Bot" <${process.env.EMAIL_USER}>`,
       to: user.email,
       subject: "Your OTP Code",
       html: `<p>Your OTP code is <b>${otp}</b>. It will expire in 1 minute.</p>
-      <p>Thanks,<br/>Infinite Cloud Team</p>`,
+      <p>Thanks,<br/>Infy Team</p>`,
     });
 
     res.status(200).json({

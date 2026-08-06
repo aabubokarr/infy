@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios"; // Import axios for making HTTP requests
 import { Button, List, Input, Modal, message, Spin } from "antd"; // Import Ant Design components
 import {
@@ -17,7 +17,6 @@ import {
   FileOutlined,
   FolderOutlined,
   VideoCameraOutlined,
-  PictureOutlined,
 } from "@ant-design/icons"; // Import Ant Design icons
 import { useDropzone } from "react-dropzone"; // Import react-dropzone for drag-and-drop file upload
 import { Sidebar } from "../../Sidebar/Sidebar"; // Import Sidebar component
@@ -295,7 +294,7 @@ function Parent(props) {
           {/* Search Input */}
           <div className="flex items-center gap-1">
             <Input
-              placeholder="Search in infinite cloud"
+              placeholder="Search in Infy"
               value={searchQuery}
               onChange={handleSearch}
               className="w-[350px] h-[48px]"

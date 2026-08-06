@@ -1,5 +1,7 @@
 # Infy - File Management Application
 
+![Infy](infy.png)
+
 Welcome to the **Infy** project! This README provides an overview of the project, setup instructions, and other relevant details.
 
 ## Table of Contents
@@ -17,6 +19,7 @@ Welcome to the **Infy** project! This README provides an overview of the project
 ## Visit
 
 - [Repository](https://github.com/aabubokarr/infy)
+- [Website](https://aabubokarr.github.io/infy/)
 
 ## About
 
@@ -35,6 +38,9 @@ The detailed directory tree of the project is outlined below:
 
 ```
 .
+├── .github/                          # GitHub Actions deployment workflows
+│   └── workflows/
+│       └── deploy.yml                # Auto-deploys React client to GitHub Pages
 ├── bot/                              # Node.js-based Telegram bot service
 │   ├── bot.js                        # Telegram bot CLI command handlers & API integration
 │   └── package.json                  # Telegram bot dependencies (node-telegram-bot-api, axios)
@@ -54,6 +60,8 @@ The detailed directory tree of the project is outlined below:
 │   │   │   │   │   └── Files.jsx
 │   │   │   │   ├── Images/           # Dedicated gallery viewer for images
 │   │   │   │   │   └── Images.jsx
+│   │   │   │   ├── Landing/          # Product landing page
+│   │   │   │   │   └── Landing.jsx
 │   │   │   │   └── Parent/           # Sidebar layout shell container
 │   │   │   │       └── Parent.jsx
 │   │   │   ├── Profile/              # User profile settings & user avatar view
@@ -116,29 +124,26 @@ The detailed directory tree of the project is outlined below:
    ```bash
    npm add vite@latest
    ```
-4. Navigate to the project's backend directory:
+4. Start the frontend:
+   ```bash
+   npm run dev
+   ```  
+5. Navigate to the project's backend directory:
    ```bash
    cd server
    ```
-5. Install dependencies:
+6. Install dependencies:
    ```bash
    npm i
    ```
-
-## Usage
-
-1. Start the frontend:
-   ```bash
-   npm run dev
-   ```
-2. Start the backend:
+7. Start the backend:
    ```bash
    npm start
    ```
-3. Open your browser and navigate to:
+8. Open your browser and navigate to:
    ```
-   http://localhost:3000
-   ```
+   http://localhost:5173
+   ``` 
 
 ## Contributors
 

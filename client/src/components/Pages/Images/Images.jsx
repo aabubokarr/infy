@@ -1,4 +1,3 @@
-import React from "react";
 import Parent from "../Parent/Parent";
 
 export const Images = () => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"; // Import react hooks
+import { useEffect, useState } from "react"; // Import react hooks
 import axios from "axios"; // Import axios for API integration
 import AntdAvatar from "antd/es/avatar"; // Import the Avatar component from Ant Design
 import { useNavigate } from "react-router-dom"; // Import navigate from react router dom for navigation

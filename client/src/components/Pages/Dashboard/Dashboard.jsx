@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Sidebar } from "../../Sidebar/Sidebar";
 import { Progress, Button, Modal } from "antd";
@@ -48,62 +48,57 @@ export const Dashboard = () => {
       .catch((error) => alert("Error: " + error.message));
   };
 
-  const fetchCounts = async () => {
+  const fetchCounts = useCallback(async () => {
     try {
-      const googleBucket = await axios.get(
-        "http://localhost:8000/google/buckets",
+      const googleRes = await axios.get(
+        "http://localhost:8000/google/count",
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
-      setGoogleBucketCount(googleBucket.data.count);
+      setGoogleBucketCount(googleRes.data.googleDriveBuckets);
 
-      const dropboxBucket = await axios.get(
-        "http://localhost:8000/dropbox/buckets",
+      const dropboxRes = await axios.get(
+        "http://localhost:8000/dropbox/count",
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
-      setDropboxBucketCount(dropboxBucket.data.count);
+      setDropboxBucketCount(dropboxRes.data.dropboxBuckets);
 
-      const spaceResponse = await axios.get(
-        "http://localhost:8000/file/space",
+      const fileRes = await axios.get(
+        "http://localhost:8000/file/available-storage",
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         }
       );
 
-      const googleSpace = spaceResponse.data.google.reduce(
-        (total, bucket) => total + bucket.available,
-        0
-      );
-      const dropboxSpace = spaceResponse.data.dropbox.reduce(
-        (total, bucket) => total + bucket.available,
-        0
-      );
+      const totalStorage = fileRes.data.storage;
+      let totalAvailableBytes = 0;
+
+      totalStorage.googleDrive.forEach((account) => {
+        totalAvailableBytes += parseInt(account.available_storage, 10);
+      });
+
+      totalStorage.dropbox.forEach((account) => {
+        totalAvailableBytes += parseInt(account.available_storage, 10);
+      });
+
       const totalAvailableSpaceGB = (
-        (googleSpace + dropboxSpace) /
+        totalAvailableBytes /
         (1024 * 1024 * 1024)
       ).toFixed(2);
-
       setSpace(totalAvailableSpaceGB);
       setLoading(false);
     } catch (err) {
-      setError("Error fetching data");
-      console.error(err);
+      console.error("Error fetching data:", err);
       setLoading(false);
     }
-  };
+  }, [token]);
 
   useEffect(() => {
     fetchCounts();
-  }, []);
+  }, [fetchCounts]);
 
   const fetchOtp = async () => {
     try {

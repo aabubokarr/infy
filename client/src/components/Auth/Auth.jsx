@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -22,7 +22,7 @@ export const Auth = () => {
     e.preventDefault(); // Prevent default form submission
     try {
       // Send POST request to register the user
-      const res = await axios.post(
+      await axios.post(
         "http://localhost:8000/api/register",
         registerData
       );
@@ -95,7 +95,7 @@ export const Auth = () => {
           {/* Register Button */}
           <div
             onClick={() => handleActive("register")}
-            className={`h-6 rounded-sm flex items-center justify-center w-[145px] cursor-pointer transition-all duration-200 ${
+            className={`h-8 rounded-sm flex items-center justify-center w-[145px] cursor-pointer transition-all duration-200 ${
               active === "register" ? "bg-primary text-white" : "text-black"
             }`}
           >
@@ -104,7 +104,7 @@ export const Auth = () => {
           {/* Login Button */}
           <div
             onClick={() => handleActive("login")}
-            className={`h-6 rounded-sm flex items-center justify-center w-[145px] cursor-pointer transition-all duration-200 ${
+            className={`h-8 rounded-sm flex items-center justify-center w-[145px] cursor-pointer transition-all duration-200 ${
               active === "login" ? "bg-primary text-white" : "text-black"
             }`}
           >
@@ -116,7 +116,7 @@ export const Auth = () => {
           <div className="flex flex-col items-center gap-3">
             <div className="text-center flex flex-col items-center">
               <h1 className="font-medium text-[40px]">Welcome</h1>
-              <p className="text-sm">Sign up to Infinite Cloud</p>
+              <p className="text-sm">Sign up on Infy</p>
             </div>
             <form
               className="flex flex-col gap-3 mt-5 text-xs w-[400px]"
@@ -185,10 +185,10 @@ export const Auth = () => {
           <div className="flex flex-col items-center gap-3">
             <div className="text-center flex flex-col items-center">
               <h1 className="font-medium text-[40px]">Welcome back</h1>
-              <p className="text-sm">Login to Infinite Cloud</p>
+              <p className="text-sm">Login to Infy</p>
             </div>
             <form
-              className="flex flex-col gap-3 mt-12 text-xs w-[400px]"
+              className="flex flex-col gap-3 mt-5 text-xs w-[400px]"
               onSubmit={handleLogin} // Handle login form submission
             >
               <input
@@ -215,7 +215,7 @@ export const Auth = () => {
               </button>
             </form>
             <p>
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <span
                 className="text-primary cursor-pointer"
                 onClick={() => handleActive("register")} // Switch to registration form

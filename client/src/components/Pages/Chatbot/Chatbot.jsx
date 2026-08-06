@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Input, Button, message, Typography, Spin, Avatar, Alert } from "antd";
 import {
   RobotOutlined,
@@ -136,7 +136,7 @@ export const Chatbot = () => {
                 <div className="text-center text-gray-500 flex items-center justify-center gap-1">
                   <RobotOutlined className="text-4xl" />
                   <Text type="secondary" className="text-[18px]">
-                    Hi, I'm Infy. How can I assist you today?
+                    Hi, I&apos;m Infy. How can I assist you today?
                   </Text>
                 </div>
               )}
